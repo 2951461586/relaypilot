@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RelayPilot — the AI night-shift engineer for your LLM relay station</title>
+<style>
+  :root { color-scheme: dark; }
+  body { font-family: system-ui, -apple-system, sans-serif; max-width: 760px;
+         margin: 0 auto; padding: 2rem 1.2rem; background: #0d1117; color: #e6edf3; line-height: 1.6; }
+  h1 { font-size: 2rem; } h2 { margin-top: 2.2rem; border-bottom: 1px solid #30363d; padding-bottom: .3rem; }
+  code, pre { background: #161b22; border: 1px solid #30363d; border-radius: 6px; }
+  code { padding: .1em .4em; } pre { padding: 1rem; overflow-x: auto; }
+  .badge { display: inline-block; background: #1f6feb; color: #fff; border-radius: 999px;
+           padding: .2em .9em; font-size: .85rem; margin-right: .4rem; }
+  .cta { display: inline-block; margin-top: 1rem; background: #238636; color: #fff;
+         padding: .7em 1.6em; border-radius: 8px; text-decoration: none; font-weight: 600; }
+  ul { padding-left: 1.2rem; }
+</style>
+</head>
+<body>
+<p><span class="badge">Hacktoberfest 2026</span> <span class="badge">Open Source</span> <span class="badge">MIT</span></p>
+<h1>🤖 RelayPilot</h1>
+<p><strong>The AI night-shift engineer for your LLM relay station.</strong><br>
+You run the relay. RelayPilot watches it while you sleep.</p>
+
+<h2>What it does</h2>
+<ul>
+  <li>📡 <strong>Channel health monitoring</strong> — probes every upstream channel on a schedule: latency, error rate, quota burn.</li>
+  <li>🚨 <strong>Automatic key quarantine</strong> — an open-weight model classifies key usage locally; a stolen key gets quarantined in minutes, not the morning after.</li>
+  <li>💬 <strong>Telegram alerts</strong> — three severity levels, quiet hours, and a daily digest. No dashboard spelunking.</li>
+  <li>🔍 <strong>Natural-language ops</strong> — <em>"which channel burned the most tokens yesterday?"</em> answered in plain language.</li>
+</ul>
+
+<h2>Why open?</h2>
+<p>Key usage logs are the crown jewels of a relay business — they can't leave your server.
+RelayPilot runs its classifier <strong>locally</strong> (Ollama + open-weight models, with a
+built-in heuristic fallback), so the security tool never becomes the security hole.
+And at thousands of classifications a day, zero marginal inference cost is what makes
+a $9/month hosted tier actual profit instead of a loss leader.</p>
+
+<h2>Self-host in 5 minutes</h2>
+<pre>git clone https://github.com/YOURNAME/relaypilot
+cd relaypilot
+cp .env.example .env   # fill in your relay + telegram credentials
+pip install -r requirements.txt
+SIMULATION_MODE=1 ./scripts/demo.sh   # try the key-leak scenario, no real services
+# real mode:
+SIMULATION_MODE=0 RELAY_API_BASE=https://your-relay.example \
+  RELAY_ADMIN_KEY=sk-admin-... uvicorn api:app --host 0.0.0.0 --port 8099</pre>
+<p>Works with any <strong>Veloera / New-API compatible</strong> gateway. Simulation mode
+included for a zero-risk trial.</p>
+
+<h2>Pricing</h2>
+<ul>
+  <li><strong>Self-hosted</strong> — free forever (MIT licensed).</li>
+  <li><strong>Hosted</strong> — $9/month: monitoring, alerting, multi-tenant billing. One prevented quota-burn pays for a year.</li>
+</ul>
+
+<a class="cta" href="https://github.com/YOURNAME/relaypilot">⭐ Star on GitHub</a>
+<p style="margin-top:2rem;color:#8b949e;font-size:.9rem">Built for the Hacktoberfest 2026 Open-Source AI Challenge — Week 2: Side Hustle.</p>
+</body>
+</html>
